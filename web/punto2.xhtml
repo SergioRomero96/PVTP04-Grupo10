@@ -1,12 +1,41 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <p:panel id="GestionNumeros" header="Gestion de Numeros" style="width: 50%">
+            <h:form id="frmRegistroNumeros">
+                <h:panelGrid id="tblRegistroNumeros" columns="2" cellpadding="5">
+                    <p:outputLabel id="lblNumero" for="txtNumero" value="Numero: "/>
+                    <p:inputNumber id="txtNumero" value="#{gestorNumeroFormBean.gestorNumeroBean.gestorNumero.numero}" required="true"/>
+                    <p:outputLabel/>
+                    <p:commandButton id="btnRegistrarNumero" value="Registrar Numero"
+                                     actionListener="#{gestorNumeroFormBean.gestorNumeroBean.gestorNumero.agregarNumeros()}" 
+                                     update="frmNumeros" icon="ui-icon-disk"/>
+                </h:panelGrid>
+            </h:form>
+            <br/>
+            <h:form id="frmNumeros">
+                <p:dataTable id="tblNumeros" value="#{gestorNumeroFormBean.gestorNumeroBean.gestorNumero.numeros}" var="num">
+                    <p:column headerText="Numeros Registrados">
+                        <p:outputLabel value="#{num}"/>
+                    </p:column>
+                </p:dataTable>
+                <br/>
+                <p:panelGrid id="pnlNumeros" columns="2">
+                    <p:outputLabel id="lblNumeroMayor" value="Numero Mayor: "/>
+                    <p:outputLabel value="#{gestorNumeroFormBean.gestorNumeroBean.gestorNumero.obtenerNumeroMayor()}"/>
+                    <p:outputLabel id="lblNumeroMenor" value="Numero Menor: "/>
+                    <p:outputLabel value="#{gestorNumeroFormBean.gestorNumeroBean.gestorNumero.obtenerNumeroMenor()}"/>
+                    <p:outputLabel id="lblPromedioNumero" value="Promedio Numeros: "/>
+                    <p:outputLabel value="#{gestorNumeroFormBean.gestorNumeroBean.gestorNumero.obtenerPromedio()}"/>
+                </p:panelGrid>
+            </h:form>
+        </p:panel>
     </h:body>
 </html>
 

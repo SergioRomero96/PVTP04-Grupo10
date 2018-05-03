@@ -1,12 +1,64 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <p:panel id="pnlGestionAutos" header="Gestion de Autos" style="width: 75%; text-align: center">
+            <h:form id="frmGestionAutos" style="margin-top: 75px">
+                <p:dataTable id="tblAutos" emptyMessage="No hay autos registrados." 
+                             value="#{autoFormBean.autos}" var="car" >
+                    
+                    <p:column headerText="Patente">
+                        <p:outputLabel id="lblPatente" value="#{car.patente}"/>
+                    </p:column>
+                    <p:column headerText="Marca">
+                        <p:outputLabel id="lblMarca" value="#{car.marca}"/>
+                    </p:column>
+                    <p:column headerText="Modelo">
+                        <p:outputLabel id="lblModelo" value="#{car.modelo}"/>
+                    </p:column>
+                    <p:column headerText="Color">
+                        <p:outputLabel id="lblColor" value="#{car.color}"/>
+                    </p:column>
+                    <p:column headerText="Combustible">
+                        <p:outputLabel id="lblCombustible" value="#{car.combustible}"/>
+                    </p:column>
+                    <p:column headerText="Editar" width="50">
+                        <p:commandButton id="btnEditar" icon="ui-icon-pencil" oncomplete="PF('dialogEditar').show();"
+                                         update="frmEditar">
+                            <f:setPropertyActionListener target="#{autoFormBean.auto}" value="#{car}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            <h:form id="frmEditar">
+                <p:dialog id="dlgEditar" header="Modificar Auto" widgetVar="dialogEditar" resizable="false" 
+                          showEffect="explode" hideEffect="explode" modal="true">
+                    <h:panelGrid id="pnlEditar" columns="2" cellpadding="5">
+                        <p:outputLabel value="Patente:"/>
+                        <p:inputText value="#{autoFormBean.auto.patente}" disabled="true" />
+                        <p:outputLabel value="Marca:"/>
+                        <p:inputText value="#{autoFormBean.auto.marca}"/>
+                        <p:outputLabel value="Modelo:"/>
+                        <p:inputText value="#{autoFormBean.auto.modelo}"/>
+                        <p:outputLabel value="Color:"/>
+                        <p:inputText value="#{autoFormBean.auto.color}"/>
+                        <p:outputLabel value="Combustible:"/>
+                        <p:inputText value="#{autoFormBean.auto.combustible}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="Guardar" actionListener="#{autoFormBean.modificarAuto()}" 
+                                     update="frmGestionAutos:tblAutos" oncomplete="PF('dialogEditar').hide();"
+                                     icon="ui-icon-disk"/>
+                    <p:commandButton value="Cancelar" oncomplete="PF('dialogEditar').hide();"
+                                     icon="ui-icon-close"/>
+                </p:dialog>
+            </h:form>
+        </p:panel>
     </h:body>
 </html>
 

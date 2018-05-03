@@ -5,6 +5,9 @@
  */
 package aplicacion.punto2.beans;
 
+import aplicacion.punto2.modelo.dominio.GestorNumeros;
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -14,12 +17,32 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class GestorNumeroBean {
-
+public class GestorNumeroBean implements Serializable{
+    private GestorNumeros gestorNumero;
+    
     /**
      * Creates a new instance of GestorNumeroBean
      */
     public GestorNumeroBean() {
+    }
+    
+    @PostConstruct
+    public void init(){
+        gestorNumero = new GestorNumeros();
+    }
+    
+    /**
+     * @return the gestorNumero
+     */
+    public GestorNumeros getGestorNumero() {
+        return gestorNumero;
+    }
+
+    /**
+     * @param gestorNumero the gestorNumero to set
+     */
+    public void setGestorNumero(GestorNumeros gestorNumero) {
+        this.gestorNumero = gestorNumero;
     }
     
 }
