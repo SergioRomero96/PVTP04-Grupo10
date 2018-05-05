@@ -5,9 +5,9 @@
  */
 package aplicacion.punto2.beans.forms;
 
-import aplicacion.punto2.beans.GestorNumeroBean;
+
+import aplicacion.punto2.modelo.dominio.GestorNumeros;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -17,27 +17,27 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class GestorNumeroFormBean {
-    @ManagedProperty(value = "#{gestorNumeroBean}")
-    private GestorNumeroBean gestorNumeroBean;
-    
+   private GestorNumeros gestorNumeros;
     /**
-     * Creates a new instance of GestorNumeroFormBean
+     * Creates a new instance of GestorNumerosFormBean
      */
     public GestorNumeroFormBean() {
+        gestorNumeros = new GestorNumeros();
     }
 
     /**
-     * @return the gestorNumeroBean
+     * @return the gestorNumeros
      */
-    public GestorNumeroBean getGestorNumeroBean() {
-        return gestorNumeroBean;
+    public GestorNumeros getGestorNumeros() {
+        return gestorNumeros;
     }
 
     /**
-     * @param gestorNumeroBean the gestorNumeroBean to set
+     * @param gestorNumeros the gestorNumeros to set
      */
-    public void setGestorNumeroBean(GestorNumeroBean gestorNumeroBean) {
-        this.gestorNumeroBean = gestorNumeroBean;
+    public void setGestorNumeros(GestorNumeros gestorNumeros) {
+        this.gestorNumeros = gestorNumeros;
     }
+    
     
 }

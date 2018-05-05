@@ -5,6 +5,8 @@
  */
 package aplicacion.punto4.beans.forms;
 
+import aplicacion.punto4.modelo.dominio.Ahorcado;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -14,12 +16,27 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class AhorcadoFormBean {
-
+public class AhorcadoFormBean implements Serializable{
+    private Ahorcado ahorcado;
     /**
      * Creates a new instance of AhorcadoFormBean
      */
     public AhorcadoFormBean() {
+        ahorcado = new Ahorcado();
+    }
+
+    /**
+     * @return the ahorcado
+     */
+    public Ahorcado getAhorcado() {
+        return ahorcado;
+    }
+
+    /**
+     * @param ahorcado the ahorcado to set
+     */
+    public void setAhorcado(Ahorcado ahorcado) {
+        this.ahorcado = ahorcado;
     }
     
 }

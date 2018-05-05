@@ -1,12 +1,57 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <p:panel id="pnlJuegoAhorcado" header="Juego el Ahorcado" style="width: 75%;text-align: center">
+           
+            <h:form id="frmJuegoAhorcado">
+                <p:layout style="min-width: 400px; min-height: 610px;">
+                    
+                     
+                    <p:layoutUnit position="west" resizable="false" minSize="650">
+                        <div align="center">
+                            <h:panelGrid id="pnlAhorcado" columns="2" cellpadding="5" style="margin-top: 100px">
+                            <p:outputLabel id="lblPalabra" value="Palabra Oculta: "/>
+                            <p:outputLabel id="lblPalabraOculta" value="#{ahorcadoFormBean.ahorcado.palabraOculta}"
+                                           style="font-size: 60px"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="3" cellpadding="5" style="margin-top: 100px">
+                            <p:outputLabel id="lblLetraIngresada" value="Ingrese una Letra: "/>
+                            <p:inputText id="txtLetraIngresada" value="#{ahorcadoFormBean.ahorcado.letra}"/>
+                            <p:commandButton id="btnVerificarLetra" value="Verificar" actionListener="#{ahorcadoFormBean.ahorcado.verificarLetra()}"
+                                             update="frmJuegoAhorcado"/>
+                        </h:panelGrid>
+                        </div>
+                        <p:panelGrid id="pnlEstado" columns="2" style="font-size: 25px; margin-top: 100px" >
+                            <p:outputLabel id="lblIntentos" value="Intentos:" />
+                            <p:outputLabel value="#{ahorcadoFormBean.ahorcado.intentos}"/>
+                            <p:outputLabel id="lblFallos" value="Fallos:"/>
+                            <p:outputLabel value="#{ahorcadoFormBean.ahorcado.fallos}"/>
+                        </p:panelGrid>
+                        <br/>
+                    </p:layoutUnit>
+                    
+                    <p:layoutUnit position="center" >
+                        <div align="center">
+                            <h:panelGrid columns="1" cellpadding="5" style="text-align: center">
+                            
+                            <h:graphicImage library="img" name="#{ahorcadoFormBean.ahorcado.images}"/>
+                            <p:outputLabel id="lblResultado" value="#{ahorcadoFormBean.ahorcado.resultado}" 
+                                           style="font-size: 40px; background-color: dimgrey; color: goldenrod; font-family: fantasy"/>
+                        </h:panelGrid>
+                        </div>    
+                    </p:layoutUnit>
+                </p:layout>
+               
+                
+            </h:form>
+            
+        </p:panel>
     </h:body>
 </html>
 

@@ -1,12 +1,85 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <p:panel id="pnlBusquedaLibros" header="Busqueda de Libros" style="width: 75%"> 
+            <div align="center">
+            <h:form id="frmBusqueda" >
+                <h:panelGrid id="pnlBuscarLibro" columns="3" cellpadding="5">
+                    <p:outputLabel id="lblBuscarAutor" value="Buscar Autor:"/>
+                    <p:selectOneMenu id="lstAutores" value="#{libroFormBean.autorBuscado}">
+                        <f:selectItems value="#{libroFormBean.listaAutores()}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton id="btnBuscar" value="Buscar" icon="ui-icon-search" 
+                                     actionListener="#{libroFormBean.buscarLibros()}" update="frmLibrosEncontrados"/>
+                </h:panelGrid>
+            </h:form>   
+            </div>
+            <h:form id="frmLibrosEncontrados">
+                <p:dataTable id="tblLibrosEncontrados" value="#{libroFormBean.busquedaLibros}" var="busq" 
+                             emptyMessage="No se encontraron Libros..." >
+                    <p:column headerText="ISBN">
+                        <p:outputLabel value="#{busq.ISBN}"/>
+                    </p:column>
+                    <p:column headerText="Titulo">
+                        <p:outputLabel value="#{busq.titulo}"/>
+                    </p:column>
+                    <p:column headerText="Autor">
+                        <p:outputLabel value="#{busq.autor}"/>
+                    </p:column>
+                    <p:column headerText="Precio">
+                        <p:outputLabel value="#{busq.precio}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:panel>
+        
+        <br/>
+        <p:panel id="pnlGestionLibros" header="Gestion de Libros" style="width: 75%" >
+            <h:form id="frmRegistroLibro" >
+                <h:panelGrid id="pnlRegistroLibro" columns="2" cellpadding="5">
+                    <p:outputLabel id="lblISBN" value="ISBN:" />
+                    <p:inputText id="txtISBN" value="#{libroFormBean.libro.ISBN}" />
+                    <p:outputLabel id="lblTitulo" value="Titulo:" />
+                    <p:inputText id="txtTitulo" value="#{libroFormBean.libro.titulo}" />
+                    <p:outputLabel id="lblAutor" value="Autor:" />
+                    <p:selectOneMenu id="lstAutores" value="#{libroFormBean.libro.autor}">
+                        <f:selectItems value="#{libroFormBean.listaAutores()}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel id="lblPrecio" value="Precio:" />
+                    <p:inputNumber id="txtPrecio" value="#{libroFormBean.libro.precio}"/>
+                </h:panelGrid>
+                <br/>
+                <p:commandButton id="btnGuardar" value="Guardar" icon="ui-icon-disk" 
+                                 actionListener="#{libroFormBean.agregarLibro()}" update="frmLibros"/>
+            </h:form>
+            
+            <br/>           
+            <h:form id="frmLibros" >
+                <p:dataTable id="tbllibros" value="#{libroFormBean.libros}" var="book" 
+                             emptyMessage="No hay libros en la Lista" >
+                    <p:column headerText="ISBN">
+                        <p:outputLabel value="#{book.ISBN}"/>
+                    </p:column>
+                    <p:column headerText="Titulo">
+                        <p:outputLabel value="#{book.titulo}"/>
+                    </p:column>
+                    <p:column headerText="Autor">
+                        <p:outputLabel value="#{book.autor}"/>
+                    </p:column>
+                    <p:column headerText="Precio">
+                        <p:outputLabel value="#{book.precio}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            
+        </p:panel>
     </h:body>
 </html>
 
