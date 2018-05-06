@@ -1,12 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Calculadora</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form>
+            <p:panel header="Calculadora" style="width: 30%">
+                <h:form> 
+                    <h:panelGrid columns="2"> 
+                        <p:outputLabel id="lbldato1" value="N°1"/>
+                        <p:inputNumber  id="txnum1" value="#{calculadoraFormBean.calculadora.dato1}"
+                                        required=""/>
+                        <p:outputLabel id="lbldato2" value="N°2"  />
+                        <p:inputNumber id="txnum2"  value="#{calculadoraFormBean.calculadora.dato2}"
+                                       required="true"/>   
+                    </h:panelGrid>
+                </h:form>                
+                <h:form id="frmSeleccion">
+                    <h:panelGrid columns="2"> 
+                    <p:outputLabel  value="Operaciones" />
+                    <p:selectOneMenu value="#{gestorCalculadoraManagedBean.operacion}">
+                        <f:selectItem itemLabel="Sumar"  itemValue="S"/>
+                        <f:selectItem itemLabel="Restar"  itemValue="R"/>
+                        <f:selectItem itemLabel="Dividir"  itemValue="D"/>
+                        <f:selectItem itemLabel="Multiplicacion"  itemValue="M"/>
+                        <f:selectItem itemLabel="Potencia"  itemValue="P"/>
+                    </p:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
+                <p:panelGrid columns="2"> 
+                <p:commandButton id="btnresultado" value="Resultado" update="lblResultado"/>   
+                <p:outputLabel id="lblResultado" value="#{calculadoraFormBean.obtenerResultado()}"/>                
+            </p:panelGrid>
+            </p:panel>
+        </h:form>
     </h:body>
 </html>
 

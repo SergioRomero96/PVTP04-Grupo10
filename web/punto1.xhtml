@@ -1,12 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <p:panel style="width: 30%" header="Conversor de Temperatura">
+            <h:panelGrid columns="2" cellpadding="5" >
+                <p:outputLabel id="lbldato1" value="Numero:"/>
+                <p:inputNumber id="txndato"  value="#{convertidorTemperaturaFormBean.conversor.num1}"/>
+            </h:panelGrid>
+            <br/>
+            <h:form id="frmSelecionConversion">
+                <p:outputLabel value="de" />
+                <p:selectOneMenu value="#{convertidorTemperaturaFormBean.valorInicial}">
+                    <f:selectItem itemLabel="Fahrenheit"   itemValue="F"/>
+                    <f:selectItem  itemLabel="Celsius"  itemValue="C"/>
+                    <f:selectItem  itemLabel="Kelvin"  itemValue="K"/>                             
+                </p:selectOneMenu>
+                <p:outputLabel  value="a"/>
+                <p:selectOneMenu value="#{convertidorTemperaturaFormBean.valorFinal}">
+                    <f:selectItem  itemLabel="Fahrenheit"  itemValue="F"/>
+                    <f:selectItem  itemLabel="Celsius"  itemValue="C"/>
+                    <f:selectItem  itemLabel="Kelvin"  itemValue="K"/>                             
+                </p:selectOneMenu>
+            </h:form>
+            <br/>
+            <p:panelGrid columns="2"> 
+                <p:commandButton id="btnresultado" value="Resultado" update="lblResultado"   />
+                <p:outputLabel  id="lblResultado" value="#{convertidorTemperaturaFormBean.obtenerResultado()}"/>
+            </p:panelGrid>
+        </p:panel>
     </h:body>
 </html>
 

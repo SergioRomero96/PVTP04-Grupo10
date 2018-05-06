@@ -1,12 +1,63 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <p:panel id="pnlGestionProfesores" header="Gestion de Profesores" style="width: 50%">
+             <h:form id="frmRegistroProfesores">
+                 <p:growl id="mensajes" />
+                <h:panelGrid id="pnlRegistroProfesores" columns="2" cellpadding="5">
+                    <p:outputLabel id="lblLegajo" value="Legajo: " for="txtLegajo"/>
+                    <p:inputText id="txtLegajo" value="#{profesorFormBean.nuevoProfesor.legajo}" 
+                                 required="true" >
+                        <f:validateLongRange minimum="6" />
+                    </p:inputText>
+                    <p:outputLabel id="lblApellido" value="Apellido: " for="txtApellido"/>
+                    <p:inputText id="txtApellido" value="#{profesorFormBean.nuevoProfesor.apellido}"
+                                 required="true"/>
+                    <p:outputLabel id="lblNombre" value="Nombre: " for="txtNombre"/>
+                    <p:inputText id="txtNombre" value="#{profesorFormBean.nuevoProfesor.nombre}"
+                                 required="true"/>
+                    <p:outputLabel id="lblEdad" value="Edad: " for="txtEdad"/>
+                    <p:inputText id="txtEdad" value="#{profesorFormBean.nuevoProfesor.edad}"
+                                 required="true">
+                        <f:validateLongRange minimum="21" maximum="50"/>
+                    </p:inputText>
+                    <p:outputLabel id="lblMateria" value="Materia: " for="txtMateria"/>
+                    <p:inputText id="txtMateria" value="#{profesorFormBean.nuevoProfesor.materia}"
+                                 required="true"/>
+                </h:panelGrid>
+                <p:commandButton id="btnRegistrar" value="Registrar" update="mensajes pnlGestionProfesores"  
+                         actionListener="#{profesorFormBean.agregarProfesor()}" 
+                         style="margin-right: 20px; margin-top: 20px" />
+                <p:commandButton id="btnMostrar" value="Mostrar" oncomplete="PF('dialogMostrar').show();"
+                                 update="frmMostrarProfesor" style="margin-right: 20px; margin-top: 20px"/>
+            </h:form>
+            
+            <h:form id="frmMostrarProfesor">
+                <p:dialog widgetVar="dialogMostrar" resizable="false" header="Datos Profesor"
+                          showEffect="explode" hideEffect="explode" modal="true">
+                    <h:panelGrid id="pnlMostrar" columns="2" cellpadding="5">
+                        <p:outputLabel value="Legajo:"/>
+                        <p:outputLabel value="#{profesorFormBean.profesor.legajo}"/>
+                        <p:outputLabel value="Apellido:"/>
+                        <p:outputLabel value="#{profesorFormBean.profesor.apellido}"/>
+                        <p:outputLabel value="Nombre:"/>
+                        <p:outputLabel value="#{profesorFormBean.profesor.nombre}"/>
+                        <p:outputLabel value="Edad:"/>
+                        <p:outputLabel value="#{profesorFormBean.profesor.edad}"/>
+                        <p:outputLabel value="Materia:"/>
+                        <p:outputLabel value="#{profesorFormBean.profesor.materia}"/>
+                    </h:panelGrid>
+                </p:dialog>
+            </h:form>
+        </p:panel>
+
     </h:body>
 </html>
 
