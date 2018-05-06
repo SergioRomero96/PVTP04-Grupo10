@@ -3,26 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package aplicacion.punto2.modelo.dominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * 
+ *
  * @author Sergio Romero
  */
-public class GestorNumeros implements Serializable{
+public class GestorNumeros implements Serializable {
+
     private double numero;
     private double numeroMenor;
     private double numeroMayor;
     private double promedioNumeros;
     private ArrayList<Double> numeros;
 
+    /**
+     * Constructor por defecto
+     */
     public GestorNumeros() {
         numeros = new ArrayList<>();
     }
+
+    /**
+     * Constructor con parametros
+     * @param numero
+     * @param numeroMenor
+     * @param numeroMayor
+     * @param promedioNumeros
+     * @param numeros
+     */
 
     public GestorNumeros(double numero, double numeroMenor, double numeroMayor, double promedioNumeros, ArrayList<Double> numeros) {
         this.numero = numero;
@@ -31,7 +43,7 @@ public class GestorNumeros implements Serializable{
         this.promedioNumeros = promedioNumeros;
         this.numeros = numeros;
     }
-    
+
     /**
      * @return the numero
      */
@@ -101,38 +113,55 @@ public class GestorNumeros implements Serializable{
     public void setNumeros(ArrayList<Double> numeros) {
         this.numeros = numeros;
     }
-    
-    public void agregarNumeros(){
+
+    /**
+     * Metodo para agregar un numero a la lista
+     */
+    public void agregarNumeros() {
         numeros.add(numero);
         numero = 0.0;
     }
-    
-    public double obtenerNumeroMayor(){
-        if(!numeros.isEmpty()){
+
+    /**
+     * Metodo para obtener el numero mayor de la lista
+     * @return el numero mayor de la lista
+     */
+    public double obtenerNumeroMayor() {
+        if (!numeros.isEmpty()) {
             numeroMayor = numeros.get(0);
-            for(double i : numeros){
-                if(i > numeroMayor)
+            for (double i : numeros) {
+                if (i > numeroMayor) {
                     numeroMayor = i;
+                }
             }
         }
         return numeroMayor;
     }
-    
-    public double obtenerNumeroMenor(){
-        if(!numeros.isEmpty()){
+
+    /**
+     * Metodo para obtener el numero menor de la lista
+     * @return el numero menor de la lista
+     */
+    public double obtenerNumeroMenor() {
+        if (!numeros.isEmpty()) {
             numeroMenor = numeros.get(0);
-            for(double i : numeros){
-                if(i < numeroMenor)
+            for (double i : numeros) {
+                if (i < numeroMenor) {
                     numeroMenor = i;
+                }
             }
         }
         return numeroMenor;
     }
-    
-    public double obtenerPromedio(){
-        if(!numeros.isEmpty()){
+
+    /**
+     * Metodo para obtener el promedio de los numeros de la lista
+     * @return el promedio de la lista
+     */
+    public double obtenerPromedio() {
+        if (!numeros.isEmpty()) {
             double suma = 0.0;
-            for(double i : numeros){
+            for (double i : numeros) {
                 suma += i;
             }
             promedioNumeros = suma / numeros.size();

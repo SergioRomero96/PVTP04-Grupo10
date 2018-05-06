@@ -17,11 +17,13 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class LibroFormBean implements Serializable{
+public class LibroFormBean implements Serializable {
+
     private Libro libro;
     private ArrayList<Libro> libros;
     private String autorBuscado;
     private ArrayList<Libro> busquedaLibros;
+
     /**
      * Creates a new instance of LibroFormBean
      */
@@ -29,32 +31,41 @@ public class LibroFormBean implements Serializable{
         libro = new Libro();
         libros = new ArrayList<>();
     }
-    
-    
-    public void agregarLibro(){
+
+    /**
+     * Metodo para agregar un libro en la Lista
+     */
+    public void agregarLibro() {
         libros.add(libro);
         libro = new Libro();
-        
+
     }
-    
-    public void buscarLibros(){
+
+    /**
+     * Metodo para buscar libros por un determinado autor
+     */
+    public void buscarLibros() {
         busquedaLibros = new ArrayList<>();
-        if(!libros.isEmpty()){
-            for(Libro book : libros){
-                if(book.getAutor().equals(autorBuscado)){
+        if (!libros.isEmpty()) {
+            for (Libro book : libros) {
+                if (book.getAutor().equals(autorBuscado)) {
                     busquedaLibros.add(book);
                 }
-            }              
+            }
         }
         autorBuscado = "";
     }
-    
-    public ArrayList<String> listaAutores(){
+
+    /**
+     * Metodo para precargar una lista de autores
+     * @return la lista de autores
+     */
+    public ArrayList<String> listaAutores() {
         ArrayList<String> autores = new ArrayList<>();
-        autores.add("Garcia Marquez Gabriel" );
+        autores.add("Garcia Marquez Gabriel");
         autores.add("Stevenson Robert");
         autores.add("Matute Ana Maria ");
-        autores.add("Hemingway Ernest" );
+        autores.add("Hemingway Ernest");
         autores.add("Faulkner William ");
         autores.add("Infante Guillermo");
         return autores;
@@ -87,10 +98,6 @@ public class LibroFormBean implements Serializable{
     public void setLibros(ArrayList<Libro> libros) {
         this.libros = libros;
     }
-
-    /**
-     * @return the autores
-     */
 
     /**
      * @return the busquedaLibros

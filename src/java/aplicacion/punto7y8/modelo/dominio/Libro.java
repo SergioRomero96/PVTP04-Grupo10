@@ -17,10 +17,15 @@ public class Libro implements Serializable{
     private String titulo;
     private String autor;
     private double precio;
-
+    
+    /**Constructor por defecto*/
     public Libro() {
     }
-
+    /**Constructor con parametr
+     * @param ISBN
+     * @param titulo
+     * @param autor
+     * @param precio*/
     public Libro(String ISBN, String titulo, String autor, double precio) {
         this.ISBN = ISBN;
         this.titulo = titulo;

@@ -3,25 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package aplicacion.punto6.modelo.dominio;
 
 import java.io.Serializable;
 
 /**
- * 
+ *
  * @author Sergio Romero
  */
-public class Auto implements Serializable{
+public class Auto implements Serializable {
+
     private String patente;
     private String marca;
     private int modelo;
     private String color;
     private String combustible;
 
+    /**
+     * Constructor por defecto
+     */
     public Auto() {
     }
 
+    /**
+     * Constructor con parametros
+     * @param patente
+     * @param marca
+     * @param modelo
+     * @param color
+     * @param combustible
+     */
     public Auto(String patente, String marca, int modelo, String color, String combustible) {
         this.patente = patente;
         this.marca = marca;

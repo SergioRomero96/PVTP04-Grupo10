@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Gestion Libros</title>
     </h:head>
     <h:body>
         <p:panel id="pnlBusquedaLibros" header="Busqueda de Libros" style="width: 75%"> 
@@ -34,7 +34,7 @@
                         <p:outputLabel value="#{busq.autor}"/>
                     </p:column>
                     <p:column headerText="Precio">
-                        <p:outputLabel value="#{busq.precio}"/>
+                        <p:outputLabel value="$ #{busq.precio}"/>
                     </p:column>
                 </p:dataTable>
             </h:form>
@@ -43,21 +43,28 @@
         <br/>
         <p:panel id="pnlGestionLibros" header="Gestion de Libros" style="width: 75%" >
             <h:form id="frmRegistroLibro" >
+                <p:growl id="mensajes" />
                 <h:panelGrid id="pnlRegistroLibro" columns="2" cellpadding="5">
-                    <p:outputLabel id="lblISBN" value="ISBN:" />
-                    <p:inputText id="txtISBN" value="#{libroFormBean.libro.ISBN}" />
-                    <p:outputLabel id="lblTitulo" value="Titulo:" />
-                    <p:inputText id="txtTitulo" value="#{libroFormBean.libro.titulo}" />
+                    <p:outputLabel id="lblISBN" value="ISBN:" for="txtISBN"/>
+                    <p:inputText id="txtISBN" value="#{libroFormBean.libro.ISBN}" required="true" type="number">
+                        <f:validateLength minimum="13" />
+                    </p:inputText>
+                    <p:outputLabel id="lblTitulo" value="Titulo:" for="txtTitulo"/>
+                    <p:inputText id="txtTitulo" value="#{libroFormBean.libro.titulo}" required="true">
+                        <f:validateLength maximum="25" />
+                    </p:inputText>
                     <p:outputLabel id="lblAutor" value="Autor:" />
                     <p:selectOneMenu id="lstAutores" value="#{libroFormBean.libro.autor}">
                         <f:selectItems value="#{libroFormBean.listaAutores()}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel id="lblPrecio" value="Precio:" />
-                    <p:inputNumber id="txtPrecio" value="#{libroFormBean.libro.precio}"/>
+                    <p:outputLabel id="lblPrecio" value="Precio:" for="txtPrecio"/>
+                    <p:inputNumber id="txtPrecio" value="#{libroFormBean.libro.precio}" required="true">
+                        <f:validateLongRange minimum="50" maximum="1000" />
+                    </p:inputNumber>
                 </h:panelGrid>
                 <br/>
                 <p:commandButton id="btnGuardar" value="Guardar" icon="ui-icon-disk" 
-                                 actionListener="#{libroFormBean.agregarLibro()}" update="frmLibros"/>
+                                 actionListener="#{libroFormBean.agregarLibro()}" update="mensajes pnlGestionLibros"/>
             </h:form>
             
             <br/>           
@@ -74,7 +81,7 @@
                         <p:outputLabel value="#{book.autor}"/>
                     </p:column>
                     <p:column headerText="Precio">
-                        <p:outputLabel value="#{book.precio}"/>
+                        <p:outputLabel value="$ #{book.precio}"/>
                     </p:column>
                 </p:dataTable>
             </h:form>
