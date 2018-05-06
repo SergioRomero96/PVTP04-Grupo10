@@ -16,9 +16,7 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ConvertidorTemperaturaFormBean {
 
-    /**
-     * Creates a new instance of ConvertidorTemperaturaFormBean
-     */
+
     public ConvertidorTemperaturaFormBean() {
     }
     
