@@ -37,18 +37,38 @@ public class Calculadora {
     public void setDato2(double dato2) {
         this.dato2 = dato2;
     }
+    /**
+     * Permite obtener la suma dado los datos ingresados
+     * @return 
+     */
     public double calcularSuma(){
         return dato1+dato2;
     }
+    /**
+     * Permite obtener la resta dado los datos ingresados
+     * @return 
+     */
     public double calcularResta(){
         return dato1-dato2;
     }
+    /**
+     * Permite obtener la Divicion dado los datos ingresados
+     * @return 
+     */
     public double calcularDivicion(){
         return dato1/dato2;
     }
+    /**
+     * Permite obtener la Multiplicacion dado los datos ingresados
+     * @return 
+     */
     public double calcularMultiplicacion(){
         return dato1*dato2;
     }
+    /**
+     * Permite obtener la Potencia dado los datos ingresados
+     * @return 
+     */
     public double calcularPotencia(){
         return Math.pow(dato1, dato2);
     }
