@@ -1,6 +1,7 @@
 package aplicacion.punto3.beans.forms;
 
 import aplicacion.punto3.modelo.dominio.Calculadora;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -10,10 +11,9 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class CalculadoraFormBean {
-
+public class CalculadoraFormBean implements Serializable {
     private Calculadora calculadora;
-    private char eleccion;
+    private char operacion;
    
     //se inicializa el atributo tipo Calculadora
     public CalculadoraFormBean() {
@@ -35,40 +35,33 @@ public class CalculadoraFormBean {
     }
 
     /**
-     * @return the eleccion
-     */
-    public char getEleccion() {
-        return eleccion;
-    }
-
-    /**
-     * @param eleccion the eleccion to set
-     */
-    public void setEleccion(char eleccion) {
-        this.eleccion = eleccion;
-    }
-    /**
      * Permite obtener un resultado segun la operacion que solicite el usuario
      * @return 
      */
     public double obtenerResultado() {
-        double resultado = .0;
-        calculadora = new Calculadora();
-        if (eleccion == 'S') {
-            resultado = calculadora.calcularSuma();
-        }
-        if (eleccion == 'R') {
-            resultado = calculadora.calcularResta();
-        }
-        if (eleccion == 'D') {
-            resultado = calculadora.calcularDivicion();
-        }
-        if (eleccion == 'M') {
-            resultado = calculadora.calcularMultiplicacion();
-        }
-        if (eleccion == 'P') {
-            resultado = calculadora.calcularPotencia();
+        double resultado = 0;
+        switch (operacion){
+            case 'S': resultado = calculadora.calcularSuma(); break;
+            case 'R': resultado = calculadora.calcularResta(); break;
+            case 'M': resultado = calculadora.calcularMultiplicacion(); break;
+            case 'D': resultado = calculadora.calcularDivicion(); break;
+            case 'P': resultado = calculadora.calcularPotencia(); break; 
         }
         return resultado;
     }
+
+    /**
+     * @return the operacion
+     */
+    public char getOperacion() {
+        return operacion;
+    }
+
+    /**
+     * @param operacion the operacion to set
+     */
+    public void setOperacion(char operacion) {
+        this.operacion = operacion;
+    }
+  
 }

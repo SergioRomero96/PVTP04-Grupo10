@@ -87,7 +87,6 @@ public class Ahorcado implements Serializable {
      * Metodo para verificar si la letra ingresada pertenece o no a la palabra
      */
     public void verificarLetra() {
-        letra = String.valueOf(letra).toUpperCase().charAt(0);//convierte la letra Minus a Mayus
         if (!letrasUsadas.contains(letra) && !estadoJuego) {//verifica si la letra ya fue ingresada y si sigue jugando
             letrasUsadas.add(letra);//agrega la letra a una lista de letras usadas
             char[] tempCharArray = palabraOculta.toCharArray();//convierte la palabra oculta en un arreglo de caracteres

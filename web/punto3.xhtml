@@ -8,36 +8,32 @@
         <title>Calculadora</title>
     </h:head>
     <h:body>
-        <h:form>
             <p:panel header="Calculadora" style="width: 30%">
-                <h:form> 
-                    <h:panelGrid columns="2"> 
-                        <p:outputLabel id="lbldato1" value="N°1"/>
-                        <p:inputNumber  id="txnum1" value="#{calculadoraFormBean.calculadora.dato1}"
-                                        required=""/>
-                        <p:outputLabel id="lbldato2" value="N°2"  />
-                        <p:inputNumber id="txnum2"  value="#{calculadoraFormBean.calculadora.dato2}"
+                <h:form id="frmCalculadora"> 
+                    <p:growl id="mensajes" />
+                    <h:panelGrid columns="2" cellpadding="5"> 
+                        <p:outputLabel id="lbldato1" value="N°1" for="txtNum1"/>
+                        <p:inputNumber  id="txtNum1" value="#{calculadoraFormBean.calculadora.dato1}"
+                                        required="true"/>
+                        <p:outputLabel id="lbldato2" value="N°2" for="txtNum2"/>
+                        <p:inputNumber id="txtNum2"  value="#{calculadoraFormBean.calculadora.dato2}"
                                        required="true"/>   
+                          
+                        <p:outputLabel  value="Operaciones" />
+                        <p:selectOneMenu value="#{calculadoraFormBean.operacion}">
+                            <f:selectItem itemLabel="Sumar"  itemValue="S"/>
+                            <f:selectItem itemLabel="Restar"  itemValue="R"/>
+                            <f:selectItem itemLabel="Dividir"  itemValue="D"/>
+                            <f:selectItem itemLabel="Multiplicacion"  itemValue="M"/>
+                            <f:selectItem itemLabel="Potencia"  itemValue="P"/>
+                        </p:selectOneMenu>
+                        
+                        <p:commandButton id="btnresultado" value="Calcular"  update="mensajes lblResultado"
+                                         icon="ui-icon-calculator"/>   
+                        <p:outputLabel id="lblResultado" value="#{calculadoraFormBean.obtenerResultado()}"/>   
                     </h:panelGrid>
-                </h:form>                
-                <h:form id="frmSeleccion">
-                    <h:panelGrid columns="2"> 
-                    <p:outputLabel  value="Operaciones" />
-                    <p:selectOneMenu value="#{gestorCalculadoraManagedBean.operacion}">
-                        <f:selectItem itemLabel="Sumar"  itemValue="S"/>
-                        <f:selectItem itemLabel="Restar"  itemValue="R"/>
-                        <f:selectItem itemLabel="Dividir"  itemValue="D"/>
-                        <f:selectItem itemLabel="Multiplicacion"  itemValue="M"/>
-                        <f:selectItem itemLabel="Potencia"  itemValue="P"/>
-                    </p:selectOneMenu>
-                    </h:panelGrid>
-                </h:form>
-                <p:panelGrid columns="2"> 
-                <p:commandButton id="btnresultado" value="Resultado" update="lblResultado"/>   
-                <p:outputLabel id="lblResultado" value="#{calculadoraFormBean.obtenerResultado()}"/>                
-            </p:panelGrid>
+                </h:form>      
             </p:panel>
-        </h:form>
     </h:body>
 </html>
 

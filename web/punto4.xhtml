@@ -4,6 +4,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <script>
+            function validarLetra(e){
+                tecla = (document.all)?e.keyCode : e.which;
+                if(tecla==8) return true;
+                patron = /[A-Z]/;
+                te = String.fromCharCode(tecla);
+                return patron.test(te);
+            }
+        </script>
         <title>Juego el Ahorcado</title>
     </h:head>
     <h:body>
@@ -12,7 +21,7 @@
             <h:form id="frmJuegoAhorcado">
                 <p:layout style="min-width: 400px; min-height: 610px;">
                     
-                    <p:layoutUnit position="west" resizable="false" minSize="650">
+                    <p:layoutUnit position="west" resizable="true" minSize="650">
                         <div align="center">
                             <h:panelGrid id="pnlAhorcado" columns="2" cellpadding="5" style="margin-top: 100px">
                                 <p:outputLabel id="lblPalabra" value="Palabra Oculta: "/>
@@ -20,10 +29,10 @@
                                                style="font-size: 60px"/>
                             </h:panelGrid>
                             <h:panelGrid columns="3" cellpadding="5" style="margin-top: 100px">
-                                <p:outputLabel id="lblLetraIngresada" value="Ingrese una Letra: " 
+                                <p:outputLabel id="lblLetraIngresada" value="Ingrese una Letra (Mayuscula): " 
                                                for="txtLetraIngresada"/>
                                 <p:inputText id="txtLetraIngresada" value="#{ahorcadoFormBean.ahorcado.letra}"
-                                             required="true" maxlength="1"/>
+                                             required="true" maxlength="1" onkeypress="return validarLetra(event)"/>
                                 <p:commandButton id="btnVerificarLetra" value="Verificar" 
                                                  actionListener="#{ahorcadoFormBean.ahorcado.verificarLetra()}"
                                                  update="mensajes frmJuegoAhorcado" icon="ui-icon-search"/>
@@ -38,7 +47,7 @@
                         <br/>
                     </p:layoutUnit>
                     
-                    <p:layoutUnit position="center" >
+                    <p:layoutUnit position="center" resizable="true">
                         <div align="center">
                             <h:panelGrid columns="1" cellpadding="5" style="text-align: center">
                                 <h:graphicImage library="img" name="#{ahorcadoFormBean.ahorcado.images}"/>

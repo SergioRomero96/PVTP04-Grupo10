@@ -34,9 +34,10 @@
                 </h:panelGrid>
                 <p:commandButton id="btnRegistrar" value="Registrar" update="mensajes pnlGestionProfesores"  
                          actionListener="#{profesorFormBean.agregarProfesor()}" 
-                         style="margin-right: 20px; margin-top: 20px" />
+                         style="margin-right: 20px; margin-top: 20px" icon="ui-icon-disk"/>
                 <p:commandButton id="btnMostrar" value="Mostrar" oncomplete="PF('dialogMostrar').show();"
-                                 update="frmMostrarProfesor" style="margin-right: 20px; margin-top: 20px"/>
+                                 update="frmMostrarProfesor" style="margin-right: 20px; margin-top: 20px"
+                                 icon="ui-icon-circle-zoomout"/>
             </h:form>
             
             <h:form id="frmMostrarProfesor">

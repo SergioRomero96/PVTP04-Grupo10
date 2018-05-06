@@ -15,24 +15,26 @@
             </h:panelGrid>
             <br/>
             <h:form id="frmSelecionConversion">
-                <p:outputLabel value="de" />
-                <p:selectOneMenu value="#{convertidorTemperaturaFormBean.valorInicial}">
-                    <f:selectItem itemLabel="Fahrenheit"   itemValue="F"/>
-                    <f:selectItem  itemLabel="Celsius"  itemValue="C"/>
-                    <f:selectItem  itemLabel="Kelvin"  itemValue="K"/>                             
-                </p:selectOneMenu>
-                <p:outputLabel  value="a"/>
-                <p:selectOneMenu value="#{convertidorTemperaturaFormBean.valorFinal}">
-                    <f:selectItem  itemLabel="Fahrenheit"  itemValue="F"/>
-                    <f:selectItem  itemLabel="Celsius"  itemValue="C"/>
-                    <f:selectItem  itemLabel="Kelvin"  itemValue="K"/>                             
-                </p:selectOneMenu>
+                <h:panelGrid id="pnlConversion" columns="2" cellpadding="5">
+                    <p:outputLabel value="de:" />
+                    <p:selectOneMenu value="#{convertidorTemperaturaFormBean.valorInicial}">
+                        <f:selectItem itemLabel="Fahrenheit"   itemValue="F"/>
+                        <f:selectItem  itemLabel="Celsius"  itemValue="C"/>
+                        <f:selectItem  itemLabel="Kelvin"  itemValue="K"/>                             
+                    </p:selectOneMenu>
+                    <p:outputLabel  value="a:"/>
+                    <p:selectOneMenu value="#{convertidorTemperaturaFormBean.valorFinal}">
+                        <f:selectItem  itemLabel="Fahrenheit"  itemValue="F"/>
+                        <f:selectItem  itemLabel="Celsius"  itemValue="C"/>
+                        <f:selectItem  itemLabel="Kelvin"  itemValue="K"/>                             
+                    </p:selectOneMenu>
+                </h:panelGrid>
             </h:form>
             <br/>
-            <p:panelGrid columns="2"> 
+            <h:panelGrid columns="2" cellpadding="5"> 
                 <p:commandButton id="btnresultado" value="Resultado" update="lblResultado"   />
                 <p:outputLabel  id="lblResultado" value="#{convertidorTemperaturaFormBean.obtenerResultado()}"/>
-            </p:panelGrid>
+            </h:panelGrid>
         </p:panel>
     </h:body>
 </html>

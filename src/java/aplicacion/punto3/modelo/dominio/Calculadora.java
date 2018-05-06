@@ -2,14 +2,26 @@
 
 package aplicacion.punto3.modelo.dominio;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Lenovo
  */
-public class Calculadora {
+public class Calculadora implements Serializable{
     private double dato1;
     private double dato2;
+    
 
+    public Calculadora() {
+    }
+
+    public Calculadora(double dato1, double dato2) {
+        this.dato1 = dato1;
+        this.dato2 = dato2;
+    }
+
+    
     /**
      * @return the dato1
      */
@@ -72,4 +84,10 @@ public class Calculadora {
     public double calcularPotencia(){
         return Math.pow(dato1, dato2);
     }
+    
+    public void obtenerNumeros(double num1, double num2){
+        dato1 = num1;
+        dato2 = num2;
+    }
+    
 }
