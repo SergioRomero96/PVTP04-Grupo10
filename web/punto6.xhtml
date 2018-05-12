@@ -9,6 +9,7 @@
     </h:head>
     <h:body>
         <p:panel id="pnlGestionAutos" header="Gestion de Autos" style="width: 75%; text-align: center">
+            <p:growl id="mensajes" />
             <h:form id="frmGestionAutos" style="margin-top: 75px">
                 <p:dataTable id="tblAutos" emptyMessage="No hay autos registrados." 
                              value="#{autoFormBean.autos}" var="car" >
@@ -38,21 +39,31 @@
             
             <h:form id="frmEditar">
                 <p:dialog id="dlgEditar" header="Modificar Auto" widgetVar="dialogEditar" resizable="false" 
-                          showEffect="explode" hideEffect="explode" modal="true">
+                          showEffect="explode" hideEffect="explode" modal="true" >
                     <h:panelGrid id="pnlEditar" columns="2" cellpadding="5">
                         <p:outputLabel value="Patente:" />
-                        <p:inputText id="txtPatente" value="#{autoFormBean.auto.patente}" disabled="true" />
+                        <p:inputText id="txtPatente" value="#{autoFormBean.auto.patente}" disabled="true" >
+                            <f:validateLength minimum="6" maximum="7"/>
+                        </p:inputText>
                         <p:outputLabel value="Marca:" for="txtMarca"/>
-                        <p:inputText id="txtMarca" value="#{autoFormBean.auto.marca}"/>
+                        <p:inputText id="txtMarca" value="#{autoFormBean.auto.marca}" required="true">
+                            <f:validateLength minimum="3" />
+                        </p:inputText>
                         <p:outputLabel value="Modelo:" for="txtModelo"/>
-                        <p:inputText id="txtModelo" value="#{autoFormBean.auto.modelo}"/>
+                        <p:inputText id="txtModelo" value="#{autoFormBean.auto.modelo}" required="true">
+                            <f:validateLongRange minimum="2010" maximum="2018"/>
+                        </p:inputText>
                         <p:outputLabel value="Color:" for="txtColor"/>
-                        <p:inputText id="txtColor" value="#{autoFormBean.auto.color}"/>
+                        <p:inputText id="txtColor" value="#{autoFormBean.auto.color}" required="true">
+                            <f:validateLength minimum="3" />
+                        </p:inputText>
                         <p:outputLabel value="Combustible:" for="txtCombustible"/>
-                        <p:inputText id="txtCombustible" value="#{autoFormBean.auto.combustible}"/>
+                        <p:inputText id="txtCombustible" value="#{autoFormBean.auto.combustible}" required="true">
+                            <f:validateLength minimum="3" />
+                        </p:inputText>
                     </h:panelGrid>
                     <p:commandButton value="Guardar" actionListener="#{autoFormBean.modificarAuto()}" 
-                                     update="frmGestionAutos:tblAutos" oncomplete="PF('dialogEditar').hide();"
+                                     update="mensajes frmGestionAutos:tblAutos" 
                                      icon="ui-icon-disk" style="margin: 20px"/>
                     <p:commandButton value="Cancelar" oncomplete="PF('dialogEditar').hide();"
                                      icon="ui-icon-close"/>

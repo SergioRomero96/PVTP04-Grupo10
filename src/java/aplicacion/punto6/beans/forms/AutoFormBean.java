@@ -9,6 +9,8 @@ import aplicacion.punto6.modelo.dominio.Auto;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.PrimeFaces;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -31,7 +33,7 @@ public class AutoFormBean implements Serializable{
         autos[2] = new Auto("DJK283","Peugeot",2012,"Morado","Diesel");
         autos[3] = new Auto("GIO348","Nisan",2014,"Azul","Super"); 
         autos[4] = new Auto("MNS382","BMW",2016,"Azul","Infinia");
-        autos[5] = new Auto("ZXV438","Bentley",2018,"Gris","Diese");
+        autos[5] = new Auto("ZXV438","Bentley",2018,"Gris","Diesel");
     }
     
     public void modificarAuto(){
@@ -44,6 +46,7 @@ public class AutoFormBean implements Serializable{
                 getAutos()[i].setCombustible(getAuto().getCombustible());
                 band = true;
             }
+        PrimeFaces.current().executeScript("PF('dialogEditar').hide();");
     }
 
     /**
